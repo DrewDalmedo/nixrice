@@ -25,6 +25,6 @@ Most of my config is centered around (neo)vim, and includes many programs with v
 Bash is set to vi-mode, as is tmux. I highly recommend you read through the included configuration.nix 
 file as you play around with the system so you understand the various configuration options that're being applied.
 ### Defaults
-- *Neovim* - the main editor. Lots of plugins and config options have been set - see configuration.nix for full details.
-- *Qutebrowser* - my preferred browser. Private browsing is always on by default, and a collection of useful quickmarks are included. Run :adblock-update for adblocking.
-- st - my preferred terminal emulator. A patch for properly displaying an icon within Gnome's taskbar is included, but it will not show up in the activities menu. Consider adding a keyboard shortcut to launch it (mine's Super-Enter). Also consider launching it with tmux: `st -e tmux` 
+- **Neovim** - the main editor. Lots of plugins and config options have been set - see configuration.nix for full details.
+- **Qutebrowser** - my preferred browser. Private browsing is always on by default, and a collection of useful quickmarks are included. Run :adblock-update for adblocking.
+- **st** - my preferred terminal emulator. A patch for properly displaying an icon within Gnome's taskbar is included, but it will not show up in the activities menu. Consider adding a keyboard shortcut to launch it (mine's Super-Enter). Also consider launching it with tmux: `st -e tmux` 
