@@ -1,0 +1,17 @@
+#!/usr/bin/env nix-shell
+#! nix-shell -i bash --pure
+#! nix-shell -p bash ffmpeg busybox
+
+workingDir=`pwd`
+tmpDir="/tmp/concatmp4"
+clips=`ls ${workingDir}/*.MP4 ${workingDir}/*.mp4`
+
+mkdir -p ${tmpDir}
+
+for clip in $clips; do
+  echo "file '$clip'" >> ${tmpDir}/cliplist
+done
+
+ffmpeg -f concat -safe 0 -i ${tmpDir}/cliplist -c copy "${workingDir}/output.mp4"
+
+rm -rf ${tmpDir}
