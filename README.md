@@ -13,7 +13,7 @@ sudo su
 nix-channel --add https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz home-manager 
 nix-channel --add https://nixos.org/channels/nixos-23.05 nixos 
 mv /etc/nixos/configuration.nix /etc/nixos/configuration.nix.bak
-cp ./configuration.nix ./st ./shell ./containers /etc/nixos/
+cp -r ./configuration.nix ./st ./shell ./containers /etc/nixos/
 nixos-rebuild boot
 ```
 
