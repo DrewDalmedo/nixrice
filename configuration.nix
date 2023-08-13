@@ -143,9 +143,11 @@ in
           # desktop entry
           ./st/patches/st-desktopentry-0.8.5.diff
         ];
+        src = ./st/st-0.8.5.tar.gz;
         configFile = writeText "config.def.h" (builtins.readFile /etc/nixos/st/config/config.h);
         postPatch = "${oldAttrs.postPatch}\n cp ${configFile} config.def.h";
       }))
+
       freetube                              # youtube client
       jellyfin-media-player                 # jellyfin client
       discord
