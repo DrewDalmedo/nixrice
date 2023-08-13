@@ -141,12 +141,9 @@ in
         # use local config
         patches = [
           # desktop entry
-          (fetchpatch {
-              url = "http://st.suckless.org/patches/desktopentry/st-desktopentry-0.8.5.diff";
-              sha256 = "1nhr56j2jw7llpiig8j65iwsjxkl2h96rar4nlnwrqv4mgmgsncw";
-          })
+          ./st/patches/st-desktopentry-0.8.5.diff
         ];
-        configFile = writeText "config.def.h" (builtins.readFile /etc/nixos/st/config.h);
+        configFile = writeText "config.def.h" (builtins.readFile /etc/nixos/st/config/config.h);
         postPatch = "${oldAttrs.postPatch}\n cp ${configFile} config.def.h";
       }))
       freetube                              # youtube client
@@ -159,6 +156,7 @@ in
       pfetch                                # system information
       ffmpeg                                # video editing
       yt-dlp                                # youtube video downloader
+      niv                                   # nix project dependency manager
       #tmux
       llvmPackages.libcxxClang              # c compiler
       todo-txt-cli                          # todo list
@@ -217,6 +215,8 @@ in
       quickmarks = {
         search = "https://search.nixos.org";
         wiki = "https://nixos.wiki";
+        status = "https://status.nixos.org/";
+        nixdev = "https://nix.dev/";
         home-manager = "https://rycee.gitlab.io/home-manager/options.html";
         blog = "https://drewdalmedo.com";
         pipeline = "https://portal.njit.edu";
@@ -321,6 +321,12 @@ in
 
       userEmail = "andrewdalmedo@gmail.com";
       userName = "Andrew Dalmedo";
+    };
+
+    programs.direnv = {
+      enable = true;
+      enableBashIntegration = true;
+      nix-direnv.enable = true;
     };
 
   };
