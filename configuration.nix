@@ -376,7 +376,17 @@ in
         " vimagit
         nnoremap <leader>g :Magit<CR>
         " vimwiki
-        " ...
+        " Default index binding: <Leader>ww
+        " Set path & set filetype to markdown
+        let g:vimwiki_list = [{
+          \ "path": "~/Documents/vimwiki/raw", 
+          \ "template_path": "~/Documents/vimwiki/templates",
+          \ "template_default": "default",
+          \ "syntax": "markdown", 
+          \ "ext": ".md",
+          \ "path_html": "~/Documents/vimwiki/html",
+          \ "custom_wiki2html": "vimwiki_markdown",
+          \ "template_ext": ".tpl"}]
 
         " other misc options
         colorscheme monokai
@@ -387,29 +397,30 @@ in
         set shiftwidth=2
         set tabstop=4
       '';
-      packages.myVimPackage = with pkgs.vimPlugins; {
+      packages.myVimPackage = with pkgs; {
         # loaded on launch
         start = [ 
           # colorscheme
-          vim-monokai
+          vimPlugins.vim-monokai
           # file explorer
-          nerdtree 
+          vimPlugins.nerdtree 
           # git workflow
-          vimagit
+          vimPlugins.vimagit
           # tmux navigation
-          vim-tmux-navigator
+          vimPlugins.vim-tmux-navigator
           # vimwiki
-          vimwiki
+          vimPlugins.vimwiki
+          vimwiki-markdown
           # nvim-surround
-          nvim-surround
+          vimPlugins.nvim-surround
           # treesitter parsers for better syntax highlighting
-          nvim-treesitter-parsers.c
-          nvim-treesitter-parsers.markdown
-          nvim-treesitter-parsers.nix
-          nvim-treesitter-parsers.vim
-          nvim-treesitter-parsers.regex
-          nvim-treesitter-parsers.python
-          nvim-treesitter-parsers.bash
+          vimPlugins.nvim-treesitter-parsers.c
+          vimPlugins.nvim-treesitter-parsers.markdown
+          vimPlugins.nvim-treesitter-parsers.nix
+          vimPlugins.nvim-treesitter-parsers.vim
+          vimPlugins.nvim-treesitter-parsers.regex
+          vimPlugins.nvim-treesitter-parsers.python
+          vimPlugins.nvim-treesitter-parsers.bash
         ];
         # manually loadable by calling ':packadd $plugin-name'
         opt = [ ];
