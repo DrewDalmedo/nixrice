@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# Check if we have at least the playlist URL
+if [ $# -lt 1 ]; then
+  echo "Usage: $(basename $0) playlist_url [start_index] [end_index]"
+    exit 1
+fi
+
+# Store the playlist URL
+PLAYLIST_URL=$1
+
+# Build the base command
+CMD="yt-dlp -f m4a --restrict-filenames --add-metadata --embed-thumbnail -o \"%(playlist_index)s. %(title)s.%(ext)s\""
+
+# If both start and end indices are provided, add the playlist-items option
+if [ $# -eq 3 ]; then
+    CMD="$CMD --playlist-items $2-$3"
+fi
+
+# Execute the final command
+eval "$CMD \"$PLAYLIST_URL\""

@@ -1,0 +1,30 @@
+#/bin/sh
+
+search_dir="${1:-$HOME/Documents}"
+
+# directories to exclude
+exclude_dirs=(
+  ".git"
+  "node_modules"
+  ".cache"
+  ".venv"
+  "__pycache__"
+  "build"
+  "dist"
+  ".idea"
+  ".vscode"
+  ".devenv"
+)
+
+# build the prune expression for find
+prune_expr=""
+for dir in "${exclude_dirs[@]}"; do
+  if [ -z "$prune_expr" ]; then
+    prune_expr="-name \"$dir\""
+  else
+    prune_expr="$prune_expr -o -name \"$dir\""
+  fi
+done
+
+# build and execute find command
+eval "find \"$search_dir\" -maxdepth 1 -type d \( $prune_expr \) -prune -o -type d -print"

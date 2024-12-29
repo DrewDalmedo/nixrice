@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# check if fzf is installed 
+if ! command -v fzf >/dev/null 2>&1; then
+  echo "Error: fzf is not installed."
+  exit 1
+fi
+
+echo $(ldr | fzf) && exit 0 || echo "Error: could not select directory" && exit 1

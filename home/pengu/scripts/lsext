@@ -1,0 +1,3 @@
+#!/bin/sh
+
+ls -p | grep -v / | awk -F . '{if (NF>1) print $NF}' | sort -u

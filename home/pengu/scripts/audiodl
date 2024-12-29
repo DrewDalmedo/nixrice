@@ -1,0 +1,26 @@
+#!/bin/sh
+
+ytlink="$1"
+sbcategories="sponsor,selfpromo,interaction,preview,music_offtopic"
+
+audiofile=$(yt-dlp -f bestaudio --restrict-filenames --print filename $ytlink)
+title=$(basename "$audiofile" .webm)
+
+# Download the files
+yt-dlp -f bestaudio --restrict-filenames --add-metadata --sponsorblock-remove $sbcategories --write-thumbnail $ytlink
+
+# Check which thumbnail extension exists
+if [ -f "$title.webp" ]; then
+    thumbfile="$title.webp"
+elif [ -f "$title.jpg" ]; then
+    thumbfile="$title.jpg"
+else
+    echo "No thumbnail found"
+    exit 1
+fi
+
+# Process the files
+ffmpeg -i "$audiofile" -i "$thumbfile" -c:a libmp3lame -map 0 -map 1 "$title.mp3" || echo "Error while downloading podcast"
+
+# Clean up
+rm "$audiofile" "$thumbfile"

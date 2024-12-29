@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Wrapper for downloading a single YouTube video w/ metadata & thumbnail embedded.
+# These should be the defaults but they're not...
+
+test "$#" -ne 1 && echo "Needs one argument" && exit 1
+
+yt-dlp --add-metadata --embed-thumbnail $1

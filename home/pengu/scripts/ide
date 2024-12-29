@@ -1,0 +1,11 @@
+#!/bin/sh
+
+dir=$(sd)
+
+if [ -n "$dir" ]; then
+  cd "$dir"
+  exec nvim .
+else
+  echo "No directory selected or error occurred"
+  exit 1
+fi

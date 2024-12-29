@@ -1,0 +1,47 @@
+#!/bin/sh
+
+# Check if source and destination arguments are provided
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 source_dir destination_dir"
+    exit 1
+fi
+
+SOURCE_DIR="$1"
+DEST_DIR="$2"
+
+# Function to clean destination directory
+cleanup() {
+    if [ -d "$1" ]; then
+        rm -rf "$1"
+    fi
+    mkdir -p "$1"
+}
+
+# Function to run a command and measure its time
+benchmark() {
+    cmd="$1"
+    name="$2"
+    
+    echo "Testing $name..."
+    
+    # Clear caches to ensure fair comparison
+    sync
+    echo 3 | sudo tee /proc/sys/vm/drop_caches >/dev/null
+    
+    # Run the command and time it
+    # Using 'time' command instead of date for better portability
+    { time eval "$cmd"; } 2>&1 | grep real | awk '{print $2}'
+    
+    # Get total size transferred
+    size=$(du -sh "$DEST_DIR" | cut -f1)
+    echo "Total size transferred: $size"
+    echo "-------------------"
+}
+
+# Test cp
+cleanup "$DEST_DIR"
+benchmark "cp -r '$SOURCE_DIR' '$DEST_DIR'" "cp"
+
+# Test rsync
+cleanup "$DEST_DIR"
+benchmark "rsync -a '$SOURCE_DIR' '$DEST_DIR'" "rsync"
