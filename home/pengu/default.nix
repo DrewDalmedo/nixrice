@@ -14,6 +14,7 @@
       qbittorrent
       discord
       zathura
+      brave
 
       # cli
       devenv
