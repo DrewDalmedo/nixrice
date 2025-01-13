@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, nvimrc, ... }:
+{ config, pkgs, agenix, nvimrc, ... }:
 
 {
   imports =
@@ -95,14 +95,25 @@
 
   programs.zsh.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.pengu = {
     isNormalUser = true;
     description = "pengu";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    ];
+    packages = with pkgs; [ ];
     shell = pkgs.zsh;
+  };
+
+  age = {
+    # TODO: can't specify this in home-manager config, look into changing home directory paths in the future
+    identityPaths = [ "/home/pengu/.ssh/id_ed25519" ];
+
+    secrets = {
+      claude = {
+        file = ./secrets/claude.age;
+        path = "/run/agenix/claude";
+        owner = "pengu";
+      };
+    };
   };
 
   nix.settings.trusted-users = [ "@wheel" ];
@@ -113,11 +124,10 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # system-wide packages
   environment.systemPackages = [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+    agenix.packages."x86_64-linux".default
+
     nvimrc.packages."x86_64-linux".default
     pkgs.ripgrep
 
