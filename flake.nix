@@ -9,10 +9,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    agenix.url = "github:ryantm/agenix";
+
     nvimrc.url = "github:DrewDalmedo/nixvimrc";
   };
 
-  outputs = { self, nixpkgs, home-manager, nvimrc, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, agenix, nvimrc, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -20,7 +22,7 @@
       mkSystem = { hostname, system ? "x86_64-linux" }:
         nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs nvimrc hostname; };
+          specialArgs = { inherit inputs nvimrc agenix hostname; };
 
           modules = [
             # system config
@@ -32,6 +34,10 @@
               home-manager.useGlobalPkgs = true;
               home-manager.users.pengu = import ./home/pengu;
             }
+
+            # agenix secret management
+            agenix.nixosModules.default
+
           ];
         };
     in {
