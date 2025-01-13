@@ -15,6 +15,12 @@
       discord
       zathura
       brave
+      obsidian
+      davinci-resolve
+      telegram-desktop
+
+      obs-studio
+      obs-studio-plugins.obs-pipewire-audio-capture
 
       # cli
       devenv
