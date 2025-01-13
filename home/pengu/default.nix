@@ -1,4 +1,5 @@
 { pkgs, config, ... }: {
+
   programs.home-manager.enable = true;
 
   home = {
@@ -16,7 +17,6 @@
       zathura
       brave
       obsidian
-      davinci-resolve
       telegram-desktop
 
       obs-studio
@@ -41,7 +41,10 @@
       executable = true;
     };
 
-    sessionVariables.SHELL = "${pkgs.zsh}/bin/zsh";
+    sessionVariables = {
+      SHELL = "${pkgs.zsh}/bin/zsh";
+
+    };
 
     stateVersion = "24.11";
   };
@@ -59,6 +62,8 @@
 
     initExtra = ''
       export PATH="$PATH:$HOME/.local/bin"
+
+      export ANTHROPIC_API_KEY=$(cat /run/agenix/claude)
     '';
 
     shellAliases = {
