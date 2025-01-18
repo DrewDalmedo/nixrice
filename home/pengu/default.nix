@@ -42,7 +42,6 @@
 
     sessionVariables = {
       SHELL = "${pkgs.zsh}/bin/zsh";
-
     };
 
     stateVersion = "24.11";
@@ -96,6 +95,20 @@
       init.defaultBranch = "main";
       pull.rebase = true;
       core.editor = "nvim";
+    };
+  };
+
+  programs.ghostty = {
+    enable = true;
+
+    settings = {
+      theme = "GruvboxDarkHard";
+
+      font-family = "UbuntuMono Nerd Font Mono";
+      font-size = 20;
+
+      gtk-titlebar = false;
+      gtk-adwaita = false;
     };
   };
 }
