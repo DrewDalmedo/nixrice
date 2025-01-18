@@ -133,6 +133,8 @@
 
     pkgs.fzf
     pkgs.kitty
+
+    pkgs.kdePackages.qtmultimedia
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
