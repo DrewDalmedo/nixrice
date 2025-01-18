@@ -13,7 +13,6 @@
       nsxiv
       mpv
       qbittorrent
-      discord
       zathura
       brave
       obsidian
