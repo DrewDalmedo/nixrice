@@ -31,8 +31,12 @@
             # home-manager
             home-manager.nixosModules.home-manager
             {
-              home-manager.useGlobalPkgs = true;
-              home-manager.users.pengu = import ./home/pengu;
+              home-manager = {
+                useGlobalPkgs = true;
+                backupFileExtension = "bak";
+
+                users.pengu = import ./home/pengu;
+              };
             }
 
             # agenix secret management
