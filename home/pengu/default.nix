@@ -102,7 +102,7 @@
     enable = true;
 
     settings = {
-      theme = "GruvboxDarkHard";
+      theme = "GruvboxDark";
 
       font-family = "UbuntuMono Nerd Font Mono";
       font-size = 20;
