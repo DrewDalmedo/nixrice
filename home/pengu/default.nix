@@ -9,7 +9,6 @@
     packages = with pkgs; [
       # gui
       keepassxc
-      spotify
       nsxiv
       mpv
       qbittorrent
@@ -17,9 +16,6 @@
       brave
       obsidian
       telegram-desktop
-
-      obs-studio
-      obs-studio-plugins.obs-pipewire-audio-capture
 
       # cli
       devenv
