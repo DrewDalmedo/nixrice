@@ -105,7 +105,7 @@
       theme = "GruvboxDark";
 
       font-family = "UbuntuMono Nerd Font Mono";
-      font-size = 20;
+      font-size = 16;
 
       gtk-titlebar = false;
       gtk-adwaita = false;
