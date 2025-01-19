@@ -109,6 +109,8 @@
 
       gtk-titlebar = false;
       gtk-adwaita = false;
+
+      mouse-hide-while-typing = true;
     };
   };
 }
