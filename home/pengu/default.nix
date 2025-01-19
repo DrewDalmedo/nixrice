@@ -69,6 +69,9 @@
       rbs = "sudo nixos-rebuild switch --flake";
       rbb = "sudo nixos-rebuild boot --flake";
 
+      gc = "sudo nix-collect-garbage";
+      gcd = "sudo nix-collect-garbage -d";
+
       v = "nvim";
       vv = "nvim .";
 
