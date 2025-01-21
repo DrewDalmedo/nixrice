@@ -49,6 +49,10 @@
         "voyager" = mkSystem {
           hostname = "voyager";
         };
+
+        "jupiter" = mkSystem {
+          hostname = "jupiter";
+        };
       };
     };
 }
