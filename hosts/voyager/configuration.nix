@@ -148,7 +148,6 @@
     pkgs.python314
 
     pkgs.fzf
-    pkgs.kitty
 
     pkgs.kdePackages.qtmultimedia
 
