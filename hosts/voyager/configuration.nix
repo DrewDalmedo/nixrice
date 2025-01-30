@@ -150,8 +150,6 @@
     pkgs.fzf
 
     pkgs.kdePackages.qtmultimedia
-
-    pkgs.discord
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
