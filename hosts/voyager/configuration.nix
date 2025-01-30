@@ -9,7 +9,10 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../services/syncthing.nix
+      ./virtualbox.nix
     ];
+
+  programs.firefox.enable = false;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -125,6 +128,16 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  programs.obs-studio = {
+    enable = true;
+    plugins = with pkgs.obs-studio-plugins; [
+      wlrobs
+      obs-pipewire-audio-capture
+      #obs-multi-rtmp
+      #obs-tuna
+    ];
+  };
+
   # system-wide packages
   environment.systemPackages = [
     agenix.packages."x86_64-linux".default
@@ -132,10 +145,14 @@
     nvimrc.packages."x86_64-linux".default
     pkgs.ripgrep
 
+    pkgs.python314
+
     pkgs.fzf
     pkgs.kitty
 
     pkgs.kdePackages.qtmultimedia
+
+    pkgs.discord
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
