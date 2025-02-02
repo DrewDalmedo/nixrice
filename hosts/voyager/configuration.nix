@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, agenix, nvimrc, ... }:
+{ config, pkgs, agenix, nvimrc, nur, ... }:
 
 {
   imports =
@@ -145,6 +145,8 @@
     nvimrc.packages."x86_64-linux".default
     pkgs.ripgrep
 
+    nur.packages."x86_64-linux".grayjay-desktop
+
     pkgs.python314
 
     pkgs.fzf
@@ -166,7 +168,7 @@
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 12315 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
