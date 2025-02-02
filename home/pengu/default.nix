@@ -16,6 +16,7 @@
       brave
       obsidian
       telegram-desktop
+      libreoffice-qt6-fresh
 
       # cli
       devenv
