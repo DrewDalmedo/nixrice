@@ -74,6 +74,8 @@
       v = "nvim";
       vv = "nvim .";
 
+      z = "zathura --fork";
+
       dv = "devenv";
       dvi = "devenv init";
       dvs = "devenv shell";
