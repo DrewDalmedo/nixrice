@@ -144,10 +144,12 @@
 
     nvimrc.packages."x86_64-linux".default
     pkgs.ripgrep
+    pkgs.ltex-ls
+    pkgs.python312Packages.jupytext
 
     nur.packages."x86_64-linux".grayjay-desktop
 
-    pkgs.python314
+    pkgs.python312
 
     pkgs.fzf
 
