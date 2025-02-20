@@ -25,6 +25,7 @@
       fastfetch
       yt-dlp
       ffmpeg
+      typst
 
       # misc
       nerdfonts
