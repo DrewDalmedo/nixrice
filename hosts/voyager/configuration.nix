@@ -157,6 +157,8 @@
     pkgs.fzf
 
     pkgs.kdePackages.qtmultimedia
+
+    pkgs.vesktop
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
