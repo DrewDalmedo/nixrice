@@ -73,7 +73,7 @@
       gcd = "sudo nix-collect-garbage -d";
 
       v = "nvim";
-      vv = "nvim .";
+      vv = "nvim +Ex";
 
       z = "zathura --fork";
 
