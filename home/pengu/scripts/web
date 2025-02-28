@@ -1,0 +1,5 @@
+#!/bin/sh
+# wrapper for opening web links in text files
+
+[ $# -eq 1 ] && xdg-open `cat $1` || (echo "err" && exit 1)
+
