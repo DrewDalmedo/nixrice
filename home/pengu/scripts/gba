@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd $HOME/Games/gba
+mgba -6 "$(ls $HOME/Games/gba/*.zip | fzf)"

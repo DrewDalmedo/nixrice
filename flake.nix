@@ -9,14 +9,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nur.url = "git+https://codeberg.org/quasigod/nur.git";
-
     agenix.url = "github:ryantm/agenix";
 
     nvimrc.url = "github:DrewDalmedo/nixvimrc";
   };
 
-  outputs = { self, nixpkgs, home-manager, agenix, nvimrc, nur, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, agenix, nvimrc, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -24,7 +22,7 @@
       mkSystem = { hostname, system ? "x86_64-linux" }:
         nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs nvimrc agenix hostname nur; };
+          specialArgs = { inherit inputs nvimrc agenix hostname; };
 
           modules = [
             # system config

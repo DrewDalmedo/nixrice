@@ -17,6 +17,7 @@
       obsidian
       telegram-desktop
       libreoffice-qt6-fresh
+      mgba
 
       # cli
       devenv

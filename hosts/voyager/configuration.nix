@@ -150,15 +150,11 @@
     pkgs.ltex-ls
     pkgs.python312Packages.jupytext
 
-    nur.packages."x86_64-linux".grayjay-desktop
-
     pkgs.python312
 
     pkgs.fzf
 
     pkgs.kdePackages.qtmultimedia
-
-    pkgs.vesktop
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
