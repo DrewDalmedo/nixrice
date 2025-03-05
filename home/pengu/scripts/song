@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# list of supported file extensions
+extensions="m4a mp3 mp4 webm mkv"
+
+# build the find command's pattern matching
+patterns=""
+for ext in $extensions; do
+    [ -n "$patterns" ] && patterns="$patterns -o"
+    patterns="$patterns -name \"*.$ext\""
+done
+
+# Run find with eval to properly expand the patterns, then pipe to fzf
+selected=$(eval "find \$HOME/Music -type f \( $patterns \) | fzf")
+
+# Only proceed if a file was selected
+if [ -n "$selected" ]; then
+    xdg-open "$selected"
+else
+    echo "Selection cancelled."
+    exit 1
+fi
