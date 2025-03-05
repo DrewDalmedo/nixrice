@@ -11,7 +11,10 @@ for ext in $extensions; do
 done
 
 # Find and select a leaf directory using fzf (excluding podcasts)
-selected_dir=$(find "$HOME/Music" -type d -not -path "*/podcasts*" -not -path "*/Podcasts*" -exec sh -c '[ -z "$(find "{}" -mindepth 1 -type d)" ]' \; -print | fzf --prompt="Select music directory: ")
+selected_dir=$(find "$HOME/Music" -type d -not -path "*/podcasts*" -not -path "*/Podcasts*" -exec sh -c '[ -z "$(find "{}" -mindepth 1 -type d)" ]' \; -print | \
+    fzf --prompt="Select music directory: " \
+        --preview "find {} -type f \( $patterns \) -printf '%f\n' | sort" \
+        --preview-window=right:50%)
 
 # Exit if no directory was selected
 if [ -z "$selected_dir" ]; then
