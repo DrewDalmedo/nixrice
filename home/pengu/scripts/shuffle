@@ -1,0 +1,48 @@
+#!/bin/sh
+
+# list of supported file extensions
+extensions="m4a mp3 mp4 webm mkv"
+
+# build the find command's pattern matching for supported files
+patterns=""
+for ext in $extensions; do
+    [ -n "$patterns" ] && patterns="$patterns -o"
+    patterns="$patterns -name \"*.$ext\""
+done
+
+# Find and select a leaf directory using fzf (excluding podcasts)
+selected_dir=$(find "$HOME/Music" -type d -not -path "*/podcasts*" -not -path "*/Podcasts*" -exec sh -c '[ -z "$(find "{}" -mindepth 1 -type d)" ]' \; -print | fzf --prompt="Select music directory: ")
+
+# Exit if no directory was selected
+if [ -z "$selected_dir" ]; then
+    echo "Selection cancelled."
+    exit 1
+fi
+
+# Find all music files in the selected directory
+playlist=$(eval "find \"$selected_dir\" -type f \( $patterns \)")
+
+# Check if we found any files
+if [ -z "$playlist" ]; then
+    echo "No supported audio files found in selected directory."
+    exit 1
+fi
+
+# Check if mpv is installed
+if ! command -v mpv >/dev/null 2>&1; then
+    echo "Error: mpv is not installed"
+    exit 1
+fi
+
+# Create a temporary playlist file if mpv requires it
+if mpv --player-operation-mode="pseudo-gui" --shuffle --playlist=- <<< "$playlist" >/dev/null 2>&1 & then
+    # MPV supports direct playlist input
+    disown
+else
+    # MPV needs a playlist file
+    playlist_file="$selected_dir/playlist.m3u"
+    echo "$playlist" > "$playlist_file"
+    mpv --shuffle --playlist="$playlist_file" >/dev/null 2>&1 &
+    disown
+    rm -f "$playlist_file"  # Clean up temporary playlist
+fi
