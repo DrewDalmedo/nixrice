@@ -3,7 +3,7 @@
 {
   virtualisation.virtualbox = {
     host = {
-      enable = true;
+      enable = false;
       #enableKvm = true;
       enableExtensionPack = true;
       #addNetworkInterface = false;
