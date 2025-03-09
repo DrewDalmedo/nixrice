@@ -13,6 +13,12 @@ done
 # Run find with eval to properly expand the patterns, then pipe to fzf
 selected=$(eval "find \$HOME/Music -type f \( $patterns \) | fzf")
 
+# Check if mpv is installed
+if ! command -v mpv >/dev/null 2>&1; then
+    echo "Error: mpv is not installed"
+    exit 1
+fi
+
 # Only proceed if a file was selected
 if [ -n "$selected" ]; then
     mpv "$selected" >/dev/null 2>&1 &
