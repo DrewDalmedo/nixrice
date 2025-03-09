@@ -15,7 +15,8 @@ selected=$(eval "find \$HOME/Music -type f \( $patterns \) | fzf")
 
 # Only proceed if a file was selected
 if [ -n "$selected" ]; then
-    xdg-open "$selected"
+    mpv "$selected" >/dev/null 2>&1 &
+    disown
 else
     echo "Selection cancelled."
     exit 1
