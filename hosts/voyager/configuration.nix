@@ -103,6 +103,7 @@
   programs.zsh.enable = true;
 
   users.users.pengu = {
+    home = "/home/pengu";
     isNormalUser = true;
     description = "pengu";
     extraGroups = [ "networkmanager" "wheel" ];
