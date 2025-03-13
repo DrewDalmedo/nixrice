@@ -156,6 +156,9 @@
     pkgs.fzf
 
     pkgs.kdePackages.qtmultimedia
+
+    pkgs.libreoffice-qt6-fresh
+    pkgs.mgba
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

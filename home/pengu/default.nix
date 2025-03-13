@@ -16,8 +16,6 @@
       brave
       obsidian
       telegram-desktop
-      libreoffice-qt6-fresh
-      mgba
       signal-desktop
 
       # cli
