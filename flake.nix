@@ -10,12 +10,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    darwin = {
+      url = "github:lnl7/nix-darwin/nix-darwin-24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    mac-app-util.url = "github:hraban/mac-app-util";
+
     agenix.url = "github:ryantm/agenix";
 
     nvimrc.url = "github:DrewDalmedo/nixvimrc";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, agenix, nvimrc, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, darwin, mac-app-util, agenix, nvimrc, ... }@inputs:
     let
       system = "x86_64-linux";
       
@@ -54,6 +61,36 @@
 
           ];
         };
+      mkDarwinSystem = { hostname, system ? "x86_64-darwin" }:
+        darwin.lib.darwinSystem {
+          inherit system;
+          specialArgs = { inherit inputs nvimrc agenix hostname; };
+          
+          modules = [
+            ./hosts/mercury/configuration.nix
+
+            # mac-app-util (properly populates Spotlight and ~/Applications)
+            mac-app-util.darwinModules.default
+
+            # home-manager
+            home-manager.darwinModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                backupFileExtension = "bak";
+
+                sharedModules = [
+                  mac-app-util.homeManagerModules.default
+                ];
+
+                users.pengu = import ./home/pengu;
+              };
+            }
+
+            # agenix secret management
+            agenix.darwinModules.default
+          ];
+        };
     in {
       nixosConfigurations = {
         "voyager" = mkSystem {
@@ -62,6 +99,12 @@
 
         "jupiter" = mkSystem {
           hostname = "jupiter";
+        };
+      };
+
+      darwinConfigurations = {
+        "mercury" = mkDarwinSystem {
+          hostname = "mercury";
         };
       };
     };
