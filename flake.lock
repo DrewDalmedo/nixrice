@@ -316,11 +316,11 @@
         "nixvim": "nixvim"
       },
       "locked": {
-        "lastModified": 1741714160,
-        "narHash": "sha256-lv1ro8trJVPQfkmiaqMGsy4piU3MGBLkcMKbyeBRJ0Y=",
+        "lastModified": 1741883569,
+        "narHash": "sha256-PljHLbxXqoAa1os78jUxoIz+SjEKqXeKzahqRdj9NCc=",
         "owner": "DrewDalmedo",
         "repo": "nixvimrc",
-        "rev": "710abbabc962f429b906864a3fc13e0fde3287cf",
+        "rev": "8563ff8f698f74f778fc2c562c727806d207b931",
         "type": "github"
       },
       "original": {
