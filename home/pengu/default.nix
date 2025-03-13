@@ -104,7 +104,7 @@
   };
 
   programs.ghostty = {
-    enable = true;
+    enable = false;
 
     settings = {
       theme = "GruvboxDark";
@@ -116,6 +116,17 @@
       gtk-adwaita = false;
 
       mouse-hide-while-typing = true;
+    };
+  };
+
+  programs.kitty = {
+    enable = true;
+
+    themeFile = "gruvbox-dark";
+
+    settings = {
+      font_family = "UbuntuMono Nerd Font Mono";
+      font_size = "16";
     };
   };
 }
