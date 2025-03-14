@@ -69,7 +69,7 @@
         darwin.lib.darwinSystem {
           inherit system;
           specialArgs = { 
-            inherit inputs nvimrc agenix hostname;
+            inherit system inputs nvimrc agenix hostname;
             pkgs = mkPkgs system;
           };
           
