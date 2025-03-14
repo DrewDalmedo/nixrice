@@ -129,7 +129,7 @@
 
     settings = {
       font_family = "UbuntuMono Nerd Font Mono";
-      font_size = "16";
+      font_size = "20";
     };
   };
 
