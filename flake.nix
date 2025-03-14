@@ -24,22 +24,26 @@
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, darwin, mac-app-util, agenix, nvimrc, ... }@inputs:
     let
-      system = "x86_64-linux";
-      
       # overlay to selectively use unstable packages
-      unstableOverlay = final: prev: {
+      unstableOverlay = system: final: prev: {
         typst = nixpkgs-unstable.legacyPackages.${system}.typst;
       };
       
-      pkgs = import nixpkgs {
+      mkPkgs = system: import nixpkgs {
         inherit system;
-        overlays = [ unstableOverlay ];
+        config = {
+          allowUnfree = true;
+        };
+        overlays = [ (unstableOverlay system) ];
       };
 
       mkSystem = { hostname, system ? "x86_64-linux" }:
         nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs nvimrc agenix hostname; };
+          specialArgs = { 
+            inherit inputs nvimrc agenix hostname;
+            pkgs = mkPkgs system;
+          };
 
           modules = [
             # system config
@@ -64,7 +68,10 @@
       mkDarwinSystem = { hostname, system ? "x86_64-darwin" }:
         darwin.lib.darwinSystem {
           inherit system;
-          specialArgs = { inherit inputs system nvimrc agenix hostname; };
+          specialArgs = { 
+            inherit inputs nvimrc agenix hostname;
+            pkgs = mkPkgs system;
+          };
           
           modules = [
             ./hosts/mercury/configuration.nix
