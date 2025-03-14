@@ -4,7 +4,6 @@
 
   home = {
     username = "pengu";
-    #homeDirectory = "/home/pengu";
 
     packages = with pkgs; [
       # gui

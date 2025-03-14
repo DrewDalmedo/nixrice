@@ -108,6 +108,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.pengu = {
     isNormalUser = true;
+    home = "/home/pengu";
     description = "pengu";
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.zsh;
