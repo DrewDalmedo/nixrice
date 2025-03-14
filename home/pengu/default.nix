@@ -27,7 +27,9 @@
       typst
 
       # misc
-      nerdfonts
+      (nerdfonts.override { fonts = [ "UbuntuMono" ]; })
+      # TODO: change line above to the line below after updating to 25.05
+      #nerd-fonts.ubuntu-mono
     ];
 
     # copy scripts from local dir to "~/.local/bin"
