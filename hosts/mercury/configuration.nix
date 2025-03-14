@@ -4,7 +4,10 @@
   services.nix-daemon.enable = true;
 
   nixpkgs.config.allowUnfree = true;
-  #nixpkgs.config.allowBroken = true;
+
+  nix.settings = {
+    trusted-users = [ "@admin" ];
+  };
 
   users.users.pengu = {
     name = "pengu";
