@@ -1,4 +1,4 @@
-{ config, pkgs, agenix, nvimrc, ... }:
+{ config, pkgs, system, agenix, nvimrc, ... }:
 
 {
   services.nix-daemon.enable = true;
@@ -20,9 +20,9 @@
   programs.zsh.enable = true;
 
   environment.systemPackages = with pkgs; [
-    agenix.packages."x86_64-darwin".default
+    agenix.packages.${system}.default
 
-    nvimrc.packages."x86_64-darwin".default
+    nvimrc.packages.${system}.default
     pkgs.ripgrep
     pkgs.ltex-ls
     pkgs.python312Packages.jupytext

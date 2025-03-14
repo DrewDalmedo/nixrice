@@ -64,7 +64,7 @@
       mkDarwinSystem = { hostname, system ? "x86_64-darwin" }:
         darwin.lib.darwinSystem {
           inherit system;
-          specialArgs = { inherit inputs nvimrc agenix hostname; };
+          specialArgs = { inherit inputs system nvimrc agenix hostname; };
           
           modules = [
             ./hosts/mercury/configuration.nix
