@@ -124,8 +124,11 @@
     };
   };
 
-  nix.settings.trusted-users = [ "@wheel" ];
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings = {
+    trusted-users = [ "@wheel" ];
+    experimental-features = [ "nix-command" "flakes" ];
+    download-buffer-size = 134217728; # 128 MiB
+  };
 
   time.hardwareClockInLocalTime = true;
 
