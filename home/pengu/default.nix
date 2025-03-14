@@ -64,9 +64,9 @@
     '';
 
     shellAliases = {
-      rb = "sudo nixos-rebuild";
-      rbs = "sudo nixos-rebuild switch --flake";
-      rbb = "sudo nixos-rebuild boot --flake";
+      rb = if pkgs.stdenv.isDarwin then "darwin-rebuild" else "sudo nixos-rebuild";
+      rbs = if pkgs.stdenv.isDarwin then "darwin-rebuild switch --flake" else  "sudo nixos-rebuild switch --flake";
+      rbb = "sudo nixos-rebuild boot --flake"; # NixOS only
 
       gc = "sudo nix-collect-garbage";
       gcd = "sudo nix-collect-garbage -d";
@@ -81,7 +81,7 @@
       dvs = "devenv shell";
 
       fetch = "fastfetch";
-      open = "xdg-open";
+      open = if pkgs.stdenv.isDarwin then "open" else "xdg-open";
 
       cdf = "cd $(sd)";
 
@@ -103,6 +103,8 @@
   };
 
   programs.ghostty = {
+    # Ghostty 1.1.2 is broken on macOS, look into re-enabling later
+    # kitty should be used in the meantime
     enable = false;
 
     settings = {
