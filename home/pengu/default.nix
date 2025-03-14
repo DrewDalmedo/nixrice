@@ -11,7 +11,6 @@
       nsxiv
       mpv
       qbittorrent
-      #zathura
       brave
       obsidian
       telegram-desktop
@@ -129,7 +128,7 @@
 
     settings = {
       font_family = "UbuntuMono Nerd Font Mono";
-      font_size = "20";
+      font_size = if pkgs.stdenv.isDarwin then "20" else "16";
     };
   };
 
