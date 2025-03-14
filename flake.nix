@@ -27,6 +27,7 @@
       # overlay to selectively use unstable packages
       unstableOverlay = system: final: prev: {
         typst = nixpkgs-unstable.legacyPackages.${system}.typst;
+        devenv = nixpkgs-unstable.legacyPackages.${system}.devenv;
       };
       
       mkPkgs = system: import nixpkgs {
