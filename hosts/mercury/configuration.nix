@@ -7,6 +7,7 @@
 
   nix.settings = {
     trusted-users = [ "@admin" ];
+    experimental-features = [ "nix-command" "flakes" ];
   };
 
   users.users.pengu = {
