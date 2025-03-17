@@ -17,8 +17,25 @@
   };
 
   system = {
+    keyboard = {
+      enableKeyMapping = true;
+      remapCapsLockToEscape = true;
+    };
 
     stateVersion = 4;
+  };
+
+  # script to remap caps lock to escape on startup
+  launchd.user.agents."remap-capslock" = {
+    serviceConfig = {
+      ProgramArguments = [
+        "/usr/bin/hidutil"
+        "property"
+        "--set"
+        "{\"UserKeyMapping\":[{\"HIDKeyboardModifierMappingSrc\":0x700000039, \"HIDKeyboardModifierMappingDst\":0x700000029}]}"
+      ];
+      RunAtLoad = true;
+    };
   };
 
   programs.zsh.enable = true;
