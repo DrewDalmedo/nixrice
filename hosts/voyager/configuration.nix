@@ -166,6 +166,7 @@
     pkgs.discord
 
     pkgs.metasploit
+    pkgs.nmap
   ];
 
   services.postgresql = {
