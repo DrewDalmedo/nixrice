@@ -28,6 +28,7 @@
       unstableOverlay = system: final: prev: {
         typst = nixpkgs-unstable.legacyPackages.${system}.typst;
         devenv = nixpkgs-unstable.legacyPackages.${system}.devenv;
+        metasploit = nixpkgs-unstable.legacyPackages.${system}.metasploit;
       };
       
       mkPkgs = system: import nixpkgs {

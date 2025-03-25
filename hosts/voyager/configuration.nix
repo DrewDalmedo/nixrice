@@ -162,7 +162,29 @@
 
     pkgs.libreoffice-qt6-fresh
     pkgs.mgba
+
+    pkgs.discord
+
+    pkgs.metasploit
   ];
+
+  services.postgresql = {
+    enable = true;
+    authentication = pkgs.lib.mkForce ''
+      # TYPE  DATABASE        USER            ADDRESS                 METHOD
+      local   all             all                                     trust
+      host    all             all             127.0.0.1/32           trust
+      host    all             all             ::1/128                trust
+    '';
+
+    ensureDatabases = [ "msf" ];
+    ensureUsers = [
+      {
+        name = "msf";
+        ensureDBOwnership = true;
+      }
+    ];
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
