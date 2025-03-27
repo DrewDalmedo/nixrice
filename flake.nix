@@ -115,6 +115,11 @@
         "mercury" = mkDarwinSystem {
           hostname = "mercury";
         };
+
+        #"polaris" = mkDarwinSystem {
+        #  hostname = "polaris";
+        #  system = "aarch64-darwin";
+        #};
       };
     };
 }
