@@ -2,7 +2,7 @@
 
 {
   services.syncthing = {
-    enable = false;
+    enable = true;
     openDefaultPorts = true;
 
     settings = {
