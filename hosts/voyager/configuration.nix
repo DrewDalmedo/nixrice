@@ -6,10 +6,10 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../../services/syncthing.nix
-      ./virtualbox.nix
+    [ 
+      ./hardware-configuration.nix # Include the results of the hardware scan.
+      #../../services/syncthing.nix
+      #./virtualbox.nix
     ];
 
   programs.firefox.enable = false;
