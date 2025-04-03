@@ -24,6 +24,7 @@
       yt-dlp
       ffmpeg
       typst
+      magic-wormhole
 
       # misc
       (nerdfonts.override { fonts = [ "UbuntuMono" ]; })
