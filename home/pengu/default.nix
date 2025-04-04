@@ -13,7 +13,6 @@
       qbittorrent
       brave
       obsidian
-      telegram-desktop
       signal-desktop
 
       # cli
