@@ -106,7 +106,7 @@
     home = "/home/pengu";
     isNormalUser = true;
     description = "pengu";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [ ];
     shell = pkgs.zsh;
   };
@@ -186,6 +186,8 @@
       }
     ];
   };
+
+  virtualisation.docker.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
