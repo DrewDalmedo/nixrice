@@ -24,6 +24,7 @@
       ffmpeg
       typst
       magic-wormhole
+      xan
 
       # misc
       (nerdfonts.override { fonts = [ "UbuntuMono" ]; })
